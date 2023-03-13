@@ -4,6 +4,8 @@ import { scaleLinear, scaleBand, max } from 'd3'
 const BarChart = ({ width, height, data }) => {
   const svgRef = useRef()
 
+  const lines = [10, 20, 30, 40]
+
   // scales
   const margin = 10
   const xScale = scaleLinear()
@@ -39,9 +41,25 @@ const BarChart = ({ width, height, data }) => {
     </text>
   ))
 
+  const gridLines = lines.map((l) => (
+    <g>
+      <line
+        stroke='#FFF'
+        x1={xScale(l)}
+        x2={xScale(l)}
+        y1={0}
+        y2={height - margin}
+      ></line>
+      <text textAnchor='middle' fontSize={12} x={xScale(l)} y={height - margin}>
+        {l}
+      </text>
+    </g>
+  ))
+
   return (
     <svg ref={svgRef} viewBox={`0 0 ${width} ${height}`}>
       {rectangles}
+      {gridLines}
       {labels}
     </svg>
   )
