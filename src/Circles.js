@@ -12,25 +12,18 @@ function Circles({ width, height }) {
   // store a Ref to the SVG that will allow d3 to access the DOM element
   const svgRef = useRef()
 
-  // when button clicked, randomly update the data stored in state, triggering a re-render
-  const handleClick = () => setData(getData())
-
   // when data or dimensions change, update the circle attributes - color, size, and position
   useEffect(() => {
-    let maxRadius = 40
     let xScale = scaleLinear().domain([0, 1]).range([0, width])
     let yScale = scaleLinear().domain([0, 1]).range([0, height])
-    let rScale = scaleLinear().domain([0, 1]).range([0, maxRadius])
 
     select(svgRef.current)
       .selectAll('circle')
       .data(data)
-      .transition()
-      .duration(1000)
       .attr('cx', (d) => xScale(d.x))
       .attr('cy', (d) => yScale(d.y))
-      .attr('r', (d) => rScale(d.r))
-      .style('fill', (d) => colors[d.color])
+      .attr('r', 5)
+      .style('fill', 'black')
   }, [data, height, width])
 
   // this just attaches circles to the DOM - it doesn't actually set their size, color, or position
@@ -42,7 +35,7 @@ function Circles({ width, height }) {
         ))}
       </svg>
       <div>
-        <button onClick={handleClick}>Refresh Data</button>
+        <button>Refresh Data</button>
       </div>
     </div>
   )
