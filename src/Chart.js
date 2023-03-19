@@ -1,9 +1,7 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { scaleLinear, scaleBand, max } from 'd3'
 
 const BarChart = ({ width, height, data }) => {
-  const svgRef = useRef()
-
   const lines = [10, 20, 30, 40]
 
   // scales
@@ -12,13 +10,13 @@ const BarChart = ({ width, height, data }) => {
     .domain([0, max(data, (d) => d.sunshine)])
     .range([0, width - 2 * margin])
   const yScale = scaleBand()
-    .domain(data)
-    .range([height - 2 * margin, 0])
+    .domain(data.map((d) => d.city))
+    .range([0, height - 2 * margin])
 
-  const rectangles = data.map((d) => (
+  const rectangles = data.map((d, i) => (
     <rect
       x={margin}
-      y={yScale(d)}
+      y={yScale(d.city)}
       height={yScale.bandwidth()}
       width={xScale(d.sunshine)}
       key={d.city}
@@ -33,7 +31,7 @@ const BarChart = ({ width, height, data }) => {
       textAnchor='end'
       fontSize='12px'
       x={xScale(d.sunshine) - 10}
-      y={yScale(d) - 10}
+      y={yScale(d.city) + 15}
       key={d.city}
       fill='#FFF'
     >
@@ -57,7 +55,7 @@ const BarChart = ({ width, height, data }) => {
   ))
 
   return (
-    <svg ref={svgRef} viewBox={`0 0 ${width} ${height}`}>
+    <svg viewBox={`0 0 ${width} ${height}`}>
       {rectangles}
       {gridLines}
       {labels}

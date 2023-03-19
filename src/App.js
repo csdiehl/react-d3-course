@@ -15,7 +15,7 @@ function App() {
     .map((d) => {
       return { city: d.CITY, sunshine: d[month.value] }
     })
-    .sort((a, b) => a.sunshine - b.sunshine)
+    .sort((a, b) => b.sunshine - a.sunshine)
     .slice(0, 20)
 
   return (
