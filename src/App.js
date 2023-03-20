@@ -7,11 +7,9 @@ import { scaleOrdinal, schemeTableau10 } from 'd3'
 
 const width = 960
 const height = 500
-let colors = ['#2176ae', '#57b8ff', '#b66d0d', '#fbb13c', '#fe6847']
 
 function App() {
   const [state, setState] = useState({ x: 1957 })
-  const filteredData = data.filter((d) => d.year === state.x)
   const continents = [...new Set(data.map((d) => d.continent))]
 
   const color = scaleOrdinal().domain(continents).range(schemeTableau10)
@@ -22,7 +20,7 @@ function App() {
       <Circles
         width={width}
         height={height}
-        data={filteredData}
+        year={state.x}
         colorScale={color}
       />
       <h2>{state.x}</h2>
