@@ -1,5 +1,26 @@
 .App {
+  height: 800px;
+  width: 100%;
   text-align: center;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: auto 50% 1fr;
+  grid-template-rows: 150px 1fr;
+  grid-template-areas:
+    "header slider legend"
+    "chart chart chart";
+}
+
+@media (max-width: 768px) {
+  .App {
+    grid-template-columns: 100%;
+    grid-template-rows: 100px auto auto 1fr;
+    grid-template-areas:
+      "header"
+      "chart"
+      "slider"
+      "legend";
+  }
 }
 
 .App-logo {
@@ -35,4 +56,28 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.chart {
+  grid-area: chart;
+  width: 100%;
+}
+
+.header {
+  grid-area: header;
+  font-size: 48px;
+  text-align: left;
+}
+
+.legend {
+  grid-area: legend;
+}
+
+.slider {
+  grid-area: slider;
+  font-weight: 400;
+  font-size: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
