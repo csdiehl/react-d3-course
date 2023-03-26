@@ -1,11 +1,4 @@
-import {
-  scaleSqrt,
-  scaleLog,
-  extent,
-  scaleLinear,
-  axisLeft,
-  axisBottom,
-} from "d3"
+import { extent, scaleLinear, scaleLog, scaleSqrt } from "d3"
 
 export function drawChart(
   SVG,
@@ -39,13 +32,4 @@ export function drawChart(
     .attr("r", (d) => rScale(d.population))
     .attr("opacity", 1)
     .style("fill", (d) => colorScale(d.continent))
-
-  SVG.append("g")
-    .call(axisLeft(yScale).ticks(5))
-    .attr("transform", `translate(${margin.left},0)`)
-    .call((g) => g.select(".domain").remove())
-  SVG.append("g")
-    .call(axisBottom(xScale).ticks(5))
-    .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call((g) => g.select(".domain").remove())
 }
