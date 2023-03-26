@@ -4,7 +4,6 @@ import data from "./gapminder_data.json"
 import { useState } from "react"
 import Slider from "react-input-slider"
 import { scaleOrdinal, schemeTableau10 } from "d3"
-import Legend from "./Legend"
 
 const width = 960
 const height = 500
@@ -36,13 +35,7 @@ function App() {
           onChange={({ x }) => setYear((state) => ({ ...state, x }))}
         />
       </div>
-      <Legend
-        setContinent={handleLegendClick}
-        continent={selectedContinent}
-        colorScale={color}
-        labels={continents}
-        className="legend"
-      />
+
       <div className="chart">
         <Circles
           width={width}
