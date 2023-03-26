@@ -21,15 +21,4 @@ export function drawChart(
   let rScale = scaleSqrt()
     .domain(extent(data, (d) => d.population))
     .range([1, maxRadius])
-
-  // circles
-  SVG.selectAll("circle")
-    .data(chartData)
-    .transition()
-    .duration(500)
-    .attr("cx", (d) => xScale(d.gdp_cap))
-    .attr("cy", (d) => yScale(d.life_exp))
-    .attr("r", (d) => rScale(d.population))
-    .attr("opacity", 1)
-    .style("fill", (d) => colorScale(d.continent))
 }
