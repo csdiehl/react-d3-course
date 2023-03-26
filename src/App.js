@@ -10,16 +10,9 @@ const height = 500
 
 function App() {
   const [year, setYear] = useState({ x: 1957 })
-  const [selectedContinent, setSelectedContinent] = useState("all")
   const continents = [...new Set(data.map((d) => d.continent))]
 
   const color = scaleOrdinal().domain(continents).range(schemeTableau10)
-
-  function handleLegendClick(continent) {
-    setSelectedContinent((prevState) =>
-      prevState === continent ? "all" : continent
-    )
-  }
 
   return (
     <div className="App">
@@ -42,7 +35,6 @@ function App() {
           height={height}
           year={year.x}
           colorScale={color}
-          selectedContinent={selectedContinent}
         />
       </div>
     </div>
