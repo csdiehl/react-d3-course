@@ -1,7 +1,6 @@
 import "./App.css"
 import Circles from "./Circles"
 import data from "./gapminder_data.json"
-import Slider from "react-input-slider"
 import { scaleOrdinal, schemeTableau10 } from "d3"
 
 const width = 960
